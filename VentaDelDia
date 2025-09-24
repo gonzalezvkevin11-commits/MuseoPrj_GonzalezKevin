@@ -1,0 +1,96 @@
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Clase que representa la venta del día en el sistema.
+ * Contiene la fecha de la venta y una lista con el detalle de
+ * los boletos vendidos.
+ * 
+ * @author Kevin González
+ * @version 1.0
+ */
+
+
+
+
+
+public class VentaDelDia{
+    
+  /** Fecha en que se realiza la venta del día */
+  private String fechaDeLaVenta;
+  
+  /** Lista de boletos vendidos en el día */
+  private List<BoletoMuseo> boletosVendidos;
+  
+  
+  /**
+   * Constructor de la clase VentaDelDia.
+   * Inicializa la fecha de la venta con la fecha actual
+   * y crea una lista vacía para almacenar los boletos vendidos durante el día.
+   */
+  public VentaDelDia() {
+    fechaDeLaVenta = establecerFechaDeLaVenta();
+    boletosVendidos = new ArrayList<>();
+    
+  }
+  
+  
+  /**
+   * Agrega la venta de un boleto a la lista de boletos vendidos.
+   * 
+   * @param boleto Boleto que desea registrar como vendido.
+   */
+  public void registrarVentaBoleto(BoletoMuseo boleto) {
+    boletosVendidos.add(boleto);
+  }
+  /**
+   * Calcula el total de ventas del día sumando el precio de todos los
+   * boletos vendidos.
+   * 
+   * @return El total de dinero recaudado por las ventas del día.
+   */
+  public double calcularTotalVentaDelDia() {
+    double total = 0.0;
+    for (BoletoMuseo b : boletosVendidos) {
+      total += b.getPrecio();
+    }
+    return total;
+  }
+  
+  
+  /**
+   * Devuelve la fecha de la venta en formato "yyyy-MM-dd".
+   * Este método es privado y usado internamente al crear una venta del día.
+   *
+   * @return Fecha de la venta como cadena.
+   */
+  private String establecerFechaDeLaVenta() {
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return LocalDate.now().format(f);
+  }
+  
+  
+  /**
+   * Crea una representación en forma de cadena del objeto VentaDelDia.
+   * Incluye fecha, cantidad de boletos, el detalle de cada boleto 
+   * (número y precio) y el total de ventas.
+   * 
+   * @return Cadena con el resumen completo de la venta del día.
+   */
+  public String toString() {
+    String msg ="VentaDelDia\n";
+    msg +=" Fecha: " + fechaDeLaVenta + "\n";
+    msg +=" Cantidad de boletos: " + boletosVendidos.size() + "\n";
+    msg +=" Detalle:\n";
+    for(BoletoMuseo b : boletosVendidos) {
+      msg +=" -Boleto #" + b.getNumeroBoleto() + " | " + b.getPrecio() + "\n";
+    }
+    msg +=" Total: " + calcularTotalVentaDelDia();
+    return msg;
+  }
+}
