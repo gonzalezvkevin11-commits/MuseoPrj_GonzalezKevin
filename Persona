@@ -1,0 +1,92 @@
+/**
+ * Clase que representa una persona en el sistema.
+ * Contiene nombre, identificación y boleto.
+ * 
+ * @author Kevin González 
+ * @version 1.0
+ */
+
+
+
+public class Persona {
+    
+  /** Nombre de la persona */
+  private String nombre;
+  
+  /** Identificación de la persona */
+  private String identificacion;
+  
+  /** Boleto asignado a la persona */
+  private BoletoMuseo miBoleto;
+  
+  /**
+   * Constructor de la clase Persona.
+   * 
+   * @param nombre Nombre de la persona.
+   * @param ident Identificación de la persona.
+   */
+  public Persona(String nombre, String ident) {
+    this(nombre);
+    identificacion = ident;
+  }
+  
+  
+  /**
+   * Constructor de la clase persona.
+   * 
+   * @param nombre Nombre de la persona.
+   */
+  public Persona(String nombre) {
+    this.nombre = nombre;
+  }
+  
+  
+  /**
+   * Cambia el valor de la identificación de la persona.
+   * 
+   * @param pIdentificacion Identificación a cambiar.
+   */
+  public void setIdentificacion(String pIdentificacion) {
+    identificacion = pIdentificacion;
+  }
+  
+  
+  /**
+   * Asigna el boleto a la persona.
+   * 
+   * @param pMiBoleto boleto a asignar.
+   */
+  public void asignarBoleto(BoletoMuseo pMiBoleto) {
+    miBoleto = pMiBoleto;
+  }
+  
+  
+  /**
+   * Consulta el número del boleto de la persona.
+   * 
+   * @return El número de boleto de la persona.
+   */
+  public int consultarMiNumeroDeBoleto() {
+      return miBoleto.getNumeroBoleto();
+  }
+  
+  
+  /**
+   * Crea una representación en forma de cadena del objeto Persona.
+   * Incluye nombre, identificación y, si lo hay,
+   * el número de boleto asignado.
+   * 
+   * @return Cadena con los datos de la persona.
+   */
+  public String toString() {
+      String msg = "Persona\n";
+      msg +=" Nombre: " + nombre + "\n";
+      msg +=" Identificacion: " + identificacion + "\n";
+      if(miBoleto != null) {
+        msg +=" Boleto asignado: #" + miBoleto.getNumeroBoleto() + "\n";
+      }else{
+        msg +=" Boleto asignado: (ninguno)\n";
+      }
+      return msg;
+  }
+}
