@@ -1,0 +1,108 @@
+
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
+
+/**
+ * Clase que representa el boleto del museo en el sistema.
+ * Contiene informaciónprecio, número, fecha de emisión y 
+ * contador de boletos.
+ * 
+ * @author Kevin González 
+ * @version 1.0
+ */
+
+
+
+
+public class BoletoMuseo{
+  /** Precio del boleto. */
+  private double precio;
+  
+  /** Número del boleto que se asignará. */
+  private int numeroBoleto;
+  
+  /** Fecha en que se emite el boleto. */
+  private String fechaEmision;
+  /**
+   * Número total de boletos creados.
+   * Es un atributo de clase (static).
+   */
+  private static int contador = 0;
+  
+  
+  /**
+   * Constructor de la clase BoletoMuseo.
+   * Crea un boleto con el precio indicado, asigna un número único.
+   * 
+   * @param precio Precio del boleto.
+   */
+  public BoletoMuseo(double precio) {
+    this.precio = precio;
+    contador++;
+    this.numeroBoleto = contador;
+    this.fechaEmision = establecerFechaEmisionBoleto();
+    
+  }
+  
+  
+  
+  /**
+   * Devuelve la fecha de emisión del boleto en formato "yyyy-MM-dd".
+   * Este método es privado y usado internamente al crear un boleto.
+   *
+   * @return Fecha de emisión como cadena.
+   */
+  private String establecerFechaEmisionBoleto() {
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return LocalDate.now().format(f);
+  }
+  
+  
+  /**
+   * Devuelve el número de boletos creados.
+   * 
+   * @return Número de boletos creados.
+   */
+  public static int getContador() {
+    return contador;
+  }
+  
+  
+  /**
+   * Devuelve el número de boleto asignado a la persona.
+   * 
+   * @return Número de boleto de la persona.
+   */
+  public int getNumeroBoleto() {
+    return numeroBoleto;
+  }
+  
+  
+  /**
+   * Devuelve el precio del boleto.
+   * 
+   * @return Precio del boleto.
+   */
+  public double getPrecio() {
+    return precio;
+  }
+  /**
+   * Crea una representación en forma de cadena del objeto BoletoMuseo.
+   * Incluye número, precio y fecha de emisión del boleto.
+   * 
+   * @return Cadena con los datos del boleto.
+   */
+  public String toString() {
+    String msg = "BoletoMuseo\n";
+    msg +=" Número: " + numeroBoleto + "\n";
+    msg +=" Precio: " + precio + "\n";
+    msg +=" Fecha Emisión: " + fechaEmision;
+    return msg;
+    
+  }
+    
+}
